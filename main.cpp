@@ -1,22 +1,14 @@
 #include <iostream>
 
-bool check_square(int x, int y)
-{
-  for(int i = 0; i<x+2; i++)
-  {
-    for(int j = 0; j<y+2; j++)
-    {
-    }
-  }
-}
+bool check_square(int nums[9][9], int x, int y);
 
 int main()
 {
 
   int nums[9][9] = {
-    {0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0},
+    {1, 2, 3, 0, 0, 0, 0, 0, 0},
+    {4, 5, 6, 0, 0, 0, 0, 0, 0},
+    {7, 8, 9, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -38,8 +30,39 @@ int main()
   std::cout<<nums[7][0]<<nums[7][1]<<nums[7][2]<<"|"<<nums[7][3]<<nums[7][4]<<nums[7][5]<<"|"<<nums[7][6]<<nums[7][7]<<nums[7][8]<<std::endl;
   std::cout<<nums[8][0]<<nums[8][1]<<nums[8][2]<<"|"<<nums[8][3]<<nums[8][4]<<nums[8][5]<<"|"<<nums[8][6]<<nums[8][7]<<nums[8][8]<<std::endl;
 
-
+  std::cout<<check_square(nums, 0, 0);
   
   return 0;
 }
 
+bool check_square(int nums[9][9], int x, int y)
+{
+
+  int count = 0;
+  
+  for(int n = 1; n<9; n++)
+  {
+    count = 0;
+   for(int i = 0; i < 3; i++)
+    {
+      for(int j = 0; j < 3; j++)
+      {
+        if(nums[i][j] == n)
+        {
+          count++;
+        }
+      }
+    } 
+  }
+
+  if(count != 1)
+  {
+    std::cout<<"Bad"<<std::endl;
+    return false;
+  }
+  else
+  {
+    std::cout<<"Good"<<std::endl;
+    return true;
+  }
+}
