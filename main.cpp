@@ -6,15 +6,15 @@ int main()
 {
 
   int nums[9][9] = {
-    {1, 2, 3, 0, 0, 0, 0, 0, 0},
-    {4, 5, 6, 0, 0, 0, 0, 0, 0},
-    {7, 8, 9, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {0, 0, 0, 0, 0, 0, 0, 0, 0}
+    {8, 2, 7, 1, 5, 4, 3, 9, 6},
+    {9, 6, 5, 3, 2, 7, 1, 4, 8},
+    {3, 4, 1, 6, 8, 9, 7, 5, 2},
+    {5, 9, 3, 4, 6, 8, 2, 7, 1},
+    {4, 7, 2, 5, 1, 3, 6, 8, 9},
+    {6, 1, 8, 9, 7, 2, 4, 3, 5},
+    {7, 8, 6, 2, 3, 5, 9, 1, 4},
+    {1, 5, 4, 7, 9, 6, 8, 2, 3},
+    {2, 3, 9, 8, 4, 1, 5, 6, 7}
   };
 
   //Draw board
@@ -31,14 +31,25 @@ int main()
   std::cout<<nums[8][0]<<nums[8][1]<<nums[8][2]<<"|"<<nums[8][3]<<nums[8][4]<<nums[8][5]<<"|"<<nums[8][6]<<nums[8][7]<<nums[8][8]<<std::endl;
 
   std::cout<<check_square(nums, 0, 0);
+  std::cout<<check_square(nums, 3, 0);
+  std::cout<<check_square(nums, 6, 0);
   
+  std::cout<<check_square(nums, 0, 3);
+  std::cout<<check_square(nums, 3, 3);
+  std::cout<<check_square(nums, 6, 3);
+
+  std::cout<<check_square(nums, 0, 6);
+  std::cout<<check_square(nums, 3, 6);
+  std::cout<<check_square(nums, 6, 6);  
+
   return 0;
 }
-
+  
 bool check_square(int nums[9][9], int x, int y)
 {
 
-  int count = 0;
+  int count;
+  bool good = true;
   
   for(int n = 1; n<9; n++)
   {
@@ -47,15 +58,13 @@ bool check_square(int nums[9][9], int x, int y)
     {
       for(int j = 0; j < 3; j++)
       {
-        if(nums[i][j] == n)
-        {
-          count++;
-        }
+        if(nums[i][j] == n) count++;
       }
-    } 
+    }
+    if(count!=1) good = false;
   }
 
-  if(count != 1)
+  if(!good)
   {
     std::cout<<"Bad"<<std::endl;
     return false;
